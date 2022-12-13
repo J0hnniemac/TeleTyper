@@ -9,6 +9,16 @@ const TeleTyper = (props) => {
   {
     characterDelay = props.characterDelay;
   }
+  const clickTeleText = () => {
+    if (textIndex <= props.text.length) {
+      setTextIndex((textIndex) => props.text.length);
+      setText(props.text.substring(0, textIndex));
+    } else
+    {
+      console.log("You clicked the text - calling props.clickHandler");
+      props.teleTypeClickHandler();
+    }
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -18,7 +28,7 @@ const TeleTyper = (props) => {
       }
     }, characterDelay);
   });
-  return <div className="teletyper">{text}</div>;
+  return <div className="teletyper" onClick={clickTeleText}>{text}</div>;
 };
 
 export default TeleTyper;
